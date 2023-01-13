@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADOLESS2", "ADOLESS2\ADOLESS2.csproj", "{C7EC5513-CE58-43CE-B18D-49190614891E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormswithADO", "WindowsFormswithADO\WindowsFormswithADO.csproj", "{83A5C4F9-A665-42D1-B92E-0DF638E20E98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C7EC5513-CE58-43CE-B18D-49190614891E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7EC5513-CE58-43CE-B18D-49190614891E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7EC5513-CE58-43CE-B18D-49190614891E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83A5C4F9-A665-42D1-B92E-0DF638E20E98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83A5C4F9-A665-42D1-B92E-0DF638E20E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83A5C4F9-A665-42D1-B92E-0DF638E20E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83A5C4F9-A665-42D1-B92E-0DF638E20E98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
