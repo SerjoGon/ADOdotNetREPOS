@@ -22,7 +22,6 @@ namespace ConsoleAppConnectSQL
             {
                 Console.WriteLine(reader.GetValue(0));
             }
-            Console.WriteLine("Done");
             mysql.Close();
             Console.WriteLine("Close");
             Console.ReadLine(); 
