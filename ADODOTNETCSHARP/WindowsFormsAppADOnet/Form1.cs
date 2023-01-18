@@ -54,16 +54,17 @@ namespace WindowsFormsAppADOnet
             if (tabControl1.SelectedTab == tabPage1)
             {
                 int lastid = 1;
-                if (dataGridView1.Rows.Count > 0)
+                if (dataGridView1.Rows.Count > 1)
                 {
-                    lastid = (int)dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[0].Value;
+                    lastid = (int)dataGridView1.Rows[dataGridView1.Rows.Count -1 ].Cells[1].Value;
                 }
                 AddCategory ac = new AddCategory(lastid);
                 if (ac.ShowDialog() == DialogResult.OK)
                 {
-                    dataGridView1.Rows.Add(Int32.Parse(ac.tb_id.Text), Int32.Parse(ac.tb_name.Text));
-                    
+                    dataSetCategory.Tables[0].Rows.Add(Int32.Parse(ac.tb_id.Text), ac.tb_name.Text);
+                    //dataGridView1.Rows.Add(Int32.Parse(ac.tb_id.Text), Int32.Parse(ac.tb_name.Text));
                 }
+                ac.Dispose();
             }
             else if(tabControl1.SelectedTab == tabPage2)
             {
