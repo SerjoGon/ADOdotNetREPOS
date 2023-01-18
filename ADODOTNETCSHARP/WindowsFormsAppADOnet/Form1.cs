@@ -45,7 +45,7 @@ namespace WindowsFormsAppADOnet
             }
             finally
             {
-                ts_status.Text = "Connection to BD close";
+                ts_status.Text = "All Data read success";
             }
         }
 
