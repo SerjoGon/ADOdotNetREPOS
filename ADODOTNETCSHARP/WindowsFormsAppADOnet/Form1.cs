@@ -61,7 +61,7 @@ namespace WindowsFormsAppADOnet
                 AddCategory ac = new AddCategory(lastid);
                 if (ac.ShowDialog() == DialogResult.OK)
                 {
-                    dataGridView1.Rows.Add(ac.tb_name);
+                    dataGridView1.Rows.Add(Int32.Parse(ac.tb_id.Text), Int32.Parse(ac.tb_name.Text));
                     
                 }
             }
