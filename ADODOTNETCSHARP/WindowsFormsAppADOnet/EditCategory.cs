@@ -10,12 +10,14 @@ using System.Windows.Forms;
 
 namespace WindowsFormsAppADOnet
 {
-    public partial class AddCategory : Form
+    public partial class EditCategory : Form
     {
-        int lastid;
-        public AddCategory(int id)
+        int _id;
+        string _name;
+        public EditCategory(int id, string name)
         {
-            lastid = id;
+            _id = id;
+            _name = name;
             InitializeComponent();
         }
 
@@ -31,20 +33,10 @@ namespace WindowsFormsAppADOnet
             this.Close();
         }
 
-        private void AddCategory_Load(object sender, EventArgs e)
+        private void EditCategory_Load(object sender, EventArgs e)
         {
-            tb_id.Text = lastid.ToString();
-        }
-
-        private void tb_id_TextChanged(object sender, EventArgs e)
-        {
-            if (tb_id.Text.Length > 0)
-            {
-                    if (!Char.IsDigit(tb_id.Text[tb_id.Text.Length -1]))
-                    {
-                        tb_id.Text = tb_id.Text.Remove(tb_id.Text.Length - 1, 1);
-                    }
-            }
+            tb_id.Text = _id.ToString();
+            tb_name.Text = _name;
         }
     }
 }

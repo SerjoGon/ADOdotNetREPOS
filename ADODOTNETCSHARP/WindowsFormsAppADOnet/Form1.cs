@@ -16,11 +16,11 @@ namespace WindowsFormsAppADOnet
     {
         SqlDataAdapter adapterCategory = null;
         SqlDataAdapter adapterGoods = null;
-        SqlConnection conn = new SqlConnection();  
-        SqlCommand cmd = new SqlCommand();  
+        SqlConnection conn = new SqlConnection();
+        SqlCommand cmd = new SqlCommand();
         SqlDataReader reader = null;
-        DataSet dataSetGoods= new DataSet();
-        DataSet dataSetCategory= new DataSet();
+        DataSet dataSetGoods = new DataSet();
+        DataSet dataSetCategory = new DataSet();
         public Form1()
         {
             InitializeComponent();
@@ -33,10 +33,10 @@ namespace WindowsFormsAppADOnet
             {
                 adapterCategory = new SqlDataAdapter("select * from Category", conn.ConnectionString);
                 adapterCategory.Fill(dataSetCategory);
-                 dataGridView1.DataSource = dataSetCategory.Tables[0];
+                dataGridView1.DataSource = dataSetCategory.Tables[0];
                 adapterGoods = new SqlDataAdapter("select * from Goods", conn.ConnectionString);
                 adapterGoods.Fill(dataSetGoods);
-                 dataGridView2.DataSource = dataSetGoods.Tables[0];
+                dataGridView2.DataSource = dataSetGoods.Tables[0];
                 ts_status.Text = "Connection to BD success";
             }
             catch (Exception ex)
@@ -54,19 +54,50 @@ namespace WindowsFormsAppADOnet
             if (tabControl1.SelectedTab == tabPage1)
             {
                 int lastid = 1;
-                if (dataGridView1.Rows.Count > 1)
+                if (dataSetCategory.Tables[0].Rows.Count > 0)
                 {
-                    lastid = (int)dataGridView1.Rows[dataGridView1.Rows.Count -1 ].Cells[1].Value;
+                    ts_status.Text = dataGridView1.Rows.Count.ToString();
+                    lastid = (int)dataSetCategory.Tables[0].Rows[dataSetCategory.Tables[0].Rows.Count - 1][0] + 1;
                 }
                 AddCategory ac = new AddCategory(lastid);
-                if (ac.ShowDialog() == DialogResult.OK)
+                if (ac.ShowDialog() == DialogResult.OK )
                 {
                     dataSetCategory.Tables[0].Rows.Add(Int32.Parse(ac.tb_id.Text), ac.tb_name.Text);
-                    //dataGridView1.Rows.Add(Int32.Parse(ac.tb_id.Text), Int32.Parse(ac.tb_name.Text));
                 }
                 ac.Dispose();
             }
-            else if(tabControl1.SelectedTab == tabPage2)
+            else if (tabControl1.SelectedTab == tabPage2)
+            {
+
+            }
+        }
+
+        private void редактироватьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabPage1 && dataGridView1.SelectedRows.Count > 0)
+            {
+                    DataRow editRow = dataSetCategory.Tables[0].Rows[dataGridView1.SelectedRows[0].Index];
+                    EditCategory ec = new EditCategory((int)editRow[0], (string)editRow[1]);
+                    if (ec.ShowDialog() == DialogResult.OK)
+                    {
+                        dataSetCategory.Tables[0].Rows[dataGridView1.SelectedRows[0].Index].SetField(0, Int32.Parse(ec.tb_id.Text));
+                        dataSetCategory.Tables[0].Rows[dataGridView1.SelectedRows[0].Index].SetField(1, ec.tb_name.Text);
+                    }
+            }
+            else if (tabControl1.SelectedTab == tabPage2)
+            {
+
+            }
+        }
+
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabPage1)
+            {
+                if (dataGridView1.SelectedRows.Count > 0 && dataGridView1.SelectedRows[0].Cells[0].Value != null)
+                    dataSetCategory.Tables[0].Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
+            }
+            else if (tabControl1.SelectedTab == tabPage2)
             {
 
             }
