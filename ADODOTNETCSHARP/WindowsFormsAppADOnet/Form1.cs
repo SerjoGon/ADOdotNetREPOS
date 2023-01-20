@@ -17,7 +17,7 @@ namespace WindowsFormsAppADOnet
         SqlDataAdapter adapterCategory = null;
         SqlDataAdapter adapterGoods = null;
         SqlConnection conn = new SqlConnection();
-        SqlCommand cmd = new SqlCommand();
+        SqlCommandBuilder cmdbld = new SqlCommandBuilder();
         SqlDataReader reader = null;
         DataSet dataSetGoods = new DataSet();
         DataSet dataSetCategory = new DataSet();
@@ -101,6 +101,15 @@ namespace WindowsFormsAppADOnet
             {
 
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            cmdbld = new SqlCommandBuilder(adapterCategory);
+            adapterCategory.DeleteCommand = cmdbld.GetDeleteCommand();
+            adapterCategory.InsertCommand = cmdbld.GetInsertCommand();
+            adapterCategory.UpdateCommand = cmdbld.GetUpdateCommand();
+            adapterCategory.Update(dataSetCategory);
         }
     }
 }

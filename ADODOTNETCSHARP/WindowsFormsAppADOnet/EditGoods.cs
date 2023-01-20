@@ -10,13 +10,21 @@ using System.Windows.Forms;
 
 namespace WindowsFormsAppADOnet
 {
-    public partial class AddCategory : Form
+    public partial class EditGoods : Form
     {
-        int lastid;
-        public AddCategory(int id)
+        int _id;
+        string _name;
+        int _category_id;
+        int _price;
+        int _count;
+        public EditGoods(int id,string name, int category_id, int price, int count)
         {
-            lastid = id;
             InitializeComponent();
+            _id = id;
+            _name = name;
+            _category_id = category_id;
+             _price = price;
+            _count = count;
         }
 
         private void btn_ok_Click(object sender, EventArgs e)
@@ -31,9 +39,13 @@ namespace WindowsFormsAppADOnet
             this.Close();
         }
 
-        private void AddCategory_Load(object sender, EventArgs e)
+        private void EditGoods_Load(object sender, EventArgs e)
         {
-            tb_id.Text = lastid.ToString();
+            tb_id.Text = _id.ToString();
+            tb_id.Text = _id.ToString();
+            tb_id.Text = _id.ToString();
+            tb_id.Text = _id.ToString();
+            tb_id.Text = _id.ToString();
         }
     }
 }
