@@ -24,6 +24,12 @@ namespace LINQ_Start
                 Console.WriteLine("Name: {0} \nJob:{1}\nAge:{2}",h.Name,h.Description,h.Age);
 
             }
+            var result2 = humans.Where(human => human.Age > 25);
+            foreach (Human h in result2)
+            {
+                Console.WriteLine("Name: {0} \nJob:{1}\nAge:{2}", h.Name, h.Description, h.Age);
+
+            }
             Console.ReadLine();
         }
 
