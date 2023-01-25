@@ -157,7 +157,7 @@ namespace WindowsFormsAppADOnet
                 connAsync.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
                 connAsync.ConnectionString += ";Asynchronous Processing=true";
                 await connAsync.OpenAsync();
-                SqlCommand sqlcomm = new SqlCommand("select * from Category", connAsync);
+                SqlCommand sqlcomm = new SqlCommand("WAITFOR DELAY '00:00:05';select * from Category", connAsync);
                 reader = await sqlcomm.ExecuteReaderAsync();
                 if (reader != null)
                 {
