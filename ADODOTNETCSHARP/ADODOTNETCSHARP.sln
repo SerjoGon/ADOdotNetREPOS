@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppConnectSQL", "Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsAppADOnet", "WindowsFormsAppADOnet\WindowsFormsAppADOnet.csproj", "{A0E9E292-6EFE-4404-ACFF-B0B1B0297638}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ_Start", "LINQ_Start\LINQ_Start.csproj", "{DDA60A09-DBB5-471F-B314-537423F83B03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A0E9E292-6EFE-4404-ACFF-B0B1B0297638}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0E9E292-6EFE-4404-ACFF-B0B1B0297638}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0E9E292-6EFE-4404-ACFF-B0B1B0297638}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA60A09-DBB5-471F-B314-537423F83B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA60A09-DBB5-471F-B314-537423F83B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA60A09-DBB5-471F-B314-537423F83B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA60A09-DBB5-471F-B314-537423F83B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
