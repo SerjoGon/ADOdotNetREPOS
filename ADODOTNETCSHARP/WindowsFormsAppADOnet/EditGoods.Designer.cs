@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_count = new System.Windows.Forms.TextBox();
             this.lb_count = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_cat_id = new System.Windows.Forms.TextBox();
+            this.tb_price = new System.Windows.Forms.TextBox();
             this.lb_price = new System.Windows.Forms.Label();
             this.lb_categoryid = new System.Windows.Forms.Label();
             this.tb_id = new System.Windows.Forms.TextBox();
@@ -42,12 +42,12 @@
             this.btn_ok = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox3
+            // tb_count
             // 
-            this.textBox3.Location = new System.Drawing.Point(146, 200);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(215, 20);
-            this.textBox3.TabIndex = 29;
+            this.tb_count.Location = new System.Drawing.Point(146, 200);
+            this.tb_count.Name = "tb_count";
+            this.tb_count.Size = new System.Drawing.Size(215, 20);
+            this.tb_count.TabIndex = 29;
             // 
             // lb_count
             // 
@@ -59,19 +59,19 @@
             this.lb_count.TabIndex = 28;
             this.lb_count.Text = "Count";
             // 
-            // textBox1
+            // tb_cat_id
             // 
-            this.textBox1.Location = new System.Drawing.Point(146, 111);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(215, 20);
-            this.textBox1.TabIndex = 27;
+            this.tb_cat_id.Location = new System.Drawing.Point(146, 111);
+            this.tb_cat_id.Name = "tb_cat_id";
+            this.tb_cat_id.Size = new System.Drawing.Size(215, 20);
+            this.tb_cat_id.TabIndex = 27;
             // 
-            // textBox2
+            // tb_price
             // 
-            this.textBox2.Location = new System.Drawing.Point(146, 157);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(215, 20);
-            this.textBox2.TabIndex = 26;
+            this.tb_price.Location = new System.Drawing.Point(146, 157);
+            this.tb_price.Name = "tb_price";
+            this.tb_price.Size = new System.Drawing.Size(215, 20);
+            this.tb_price.TabIndex = 26;
             // 
             // lb_price
             // 
@@ -152,10 +152,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(384, 300);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tb_count);
             this.Controls.Add(this.lb_count);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tb_cat_id);
+            this.Controls.Add(this.tb_price);
             this.Controls.Add(this.lb_price);
             this.Controls.Add(this.lb_categoryid);
             this.Controls.Add(this.tb_id);
@@ -174,10 +174,10 @@
 
         #endregion
 
-        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox tb_count;
         private System.Windows.Forms.Label lb_count;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox tb_cat_id;
+        public System.Windows.Forms.TextBox tb_price;
         private System.Windows.Forms.Label lb_price;
         private System.Windows.Forms.Label lb_categoryid;
         public System.Windows.Forms.TextBox tb_id;

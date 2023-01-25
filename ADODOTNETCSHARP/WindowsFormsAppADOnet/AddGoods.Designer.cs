@@ -34,11 +34,11 @@
             this.lb_id = new System.Windows.Forms.Label();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_ok = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tb_cat_id = new System.Windows.Forms.TextBox();
+            this.tb_price = new System.Windows.Forms.TextBox();
             this.lb_price = new System.Windows.Forms.Label();
             this.lb_categoryid = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_count = new System.Windows.Forms.TextBox();
             this.lb_count = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -84,6 +84,7 @@
             this.btn_cancel.TabIndex = 7;
             this.btn_cancel.Text = "NOT OK";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_ok
             // 
@@ -93,20 +94,21 @@
             this.btn_ok.TabIndex = 6;
             this.btn_ok.Text = "OK";
             this.btn_ok.UseVisualStyleBackColor = true;
+            this.btn_ok.Click += new System.EventHandler(this.btn_ok_Click);
             // 
-            // textBox1
+            // tb_cat_id
             // 
-            this.textBox1.Location = new System.Drawing.Point(146, 111);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(215, 20);
-            this.textBox1.TabIndex = 15;
+            this.tb_cat_id.Location = new System.Drawing.Point(146, 111);
+            this.tb_cat_id.Name = "tb_cat_id";
+            this.tb_cat_id.Size = new System.Drawing.Size(215, 20);
+            this.tb_cat_id.TabIndex = 15;
             // 
-            // textBox2
+            // tb_price
             // 
-            this.textBox2.Location = new System.Drawing.Point(146, 157);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(215, 20);
-            this.textBox2.TabIndex = 14;
+            this.tb_price.Location = new System.Drawing.Point(146, 157);
+            this.tb_price.Name = "tb_price";
+            this.tb_price.Size = new System.Drawing.Size(215, 20);
+            this.tb_price.TabIndex = 14;
             // 
             // lb_price
             // 
@@ -128,12 +130,12 @@
             this.lb_categoryid.TabIndex = 12;
             this.lb_categoryid.Text = "Category Id";
             // 
-            // textBox3
+            // tb_count
             // 
-            this.textBox3.Location = new System.Drawing.Point(146, 200);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(215, 20);
-            this.textBox3.TabIndex = 17;
+            this.tb_count.Location = new System.Drawing.Point(146, 200);
+            this.tb_count.Name = "tb_count";
+            this.tb_count.Size = new System.Drawing.Size(215, 20);
+            this.tb_count.TabIndex = 17;
             // 
             // lb_count
             // 
@@ -150,10 +152,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(391, 294);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tb_count);
             this.Controls.Add(this.lb_count);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tb_cat_id);
+            this.Controls.Add(this.tb_price);
             this.Controls.Add(this.lb_price);
             this.Controls.Add(this.lb_categoryid);
             this.Controls.Add(this.tb_id);
@@ -178,11 +180,11 @@
         private System.Windows.Forms.Label lb_id;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.Button btn_ok;
-        public System.Windows.Forms.TextBox textBox1;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox tb_cat_id;
+        public System.Windows.Forms.TextBox tb_price;
         private System.Windows.Forms.Label lb_price;
         private System.Windows.Forms.Label lb_categoryid;
-        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox tb_count;
         private System.Windows.Forms.Label lb_count;
     }
 }

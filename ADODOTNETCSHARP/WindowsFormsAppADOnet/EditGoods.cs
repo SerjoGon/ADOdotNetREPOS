@@ -23,7 +23,7 @@ namespace WindowsFormsAppADOnet
             _id = id;
             _name = name;
             _category_id = category_id;
-             _price = price;
+            _price = price;
             _count = count;
         }
 
@@ -42,10 +42,10 @@ namespace WindowsFormsAppADOnet
         private void EditGoods_Load(object sender, EventArgs e)
         {
             tb_id.Text = _id.ToString();
-            tb_id.Text = _id.ToString();
-            tb_id.Text = _id.ToString();
-            tb_id.Text = _id.ToString();
-            tb_id.Text = _id.ToString();
+            tb_name.Text = _name.ToString();
+            tb_cat_id.Text = _category_id.ToString();
+            tb_price.Text = _price.ToString();
+            tb_count.Text = _count.ToString();
         }
     }
 }
