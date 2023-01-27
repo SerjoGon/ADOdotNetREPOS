@@ -20,7 +20,7 @@ namespace SQLStartLINK
         }
         public override string ToString() 
         {
-            return Id.ToString() + " "+ Name + " "  + Price.ToString() +" rub";
+            return Id.ToString() + " " + Name + " "  + Price.ToString() + " rub";
         }
     }
     internal class Program
@@ -34,6 +34,8 @@ namespace SQLStartLINK
             var queryResults1 = from c in db.Goods
                                where c.Count > 1
                                select new {Id = c.Id, Name = c.Name, Price = c.Price};
+            var queryResults2 =  db.Goods.Where(c => c.Count > 1).Select(c => new Product(c.Id, c.Name, c.Price));
+            
             foreach (var item in queryResults)
             {
                     Console.WriteLine(item);
@@ -41,6 +43,10 @@ namespace SQLStartLINK
             foreach (var item in queryResults1)
             {
                     Console.WriteLine(item);
+            }
+            foreach (var item in queryResults2)
+            {
+                Console.WriteLine(item);
             }
             Console.WriteLine("Press any key to complete...");
             Console.ReadLine();
