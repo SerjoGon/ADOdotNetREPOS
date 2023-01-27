@@ -21,24 +21,30 @@ namespace LINQ_Start
             var result = from human in humans where human.Age > 25 select human;
             foreach (Human h in result)
             {
-                Console.WriteLine("Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age);
+                Console.WriteLine(h.ToString()/*"Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age*/);
             }
             Console.WriteLine("---------------------------------------------------\n");
             var result2 = humans.Where(human => human.Age > 25).OrderBy(human => human.Name.Length);
             foreach (Human h in result2)
             {
-                Console.WriteLine("Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age);
+                Console.WriteLine(/*"Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age*/h.ToString());
             }
             Console.WriteLine("---------------------------------------------------\n");
             TestLambda();
             Console.WriteLine("---------------------------------------------------\n");
-            var result3 = from human in humans where human.Age > 25 orderby human.Age ascending select human;
-            foreach (Human h in result3)
+            var result3 = from human in humans where human.Age > 25 orderby human.Age ascending select new { human.Name, human.Description};
+            foreach (var h in result3)
             {
-                Console.WriteLine("Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age);
+                Console.WriteLine(h.Name + "    " + h.Description/*"Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age*/);
             }
             Console.WriteLine("---------------------------------------------------\n");
             Console.ReadLine();
+            var result4 = from human in humans where human.Age > 25 orderby human.Age ascending select human;
+            foreach (var h in result4)
+            {
+                Console.WriteLine(h.ToString());
+            }
+            Console.WriteLine("---------------------------------------------------\n");
         }
         delegate int del(int i);
         static void TestLambda()
@@ -47,7 +53,6 @@ namespace LINQ_Start
             int sq = myDelegate(5); //sq = 25
             Console.WriteLine(sq);
         }
-    }
 
     }
     class Human
@@ -62,7 +67,10 @@ namespace LINQ_Start
             Description = description;
             Age = age;
         }
-
+        public override string ToString()
+        {
+            return Name + " " +Description+" "+Age.ToString();
+        }
 
     }
 }
