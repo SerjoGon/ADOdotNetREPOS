@@ -21,17 +21,33 @@ namespace LINQ_Start
             var result = from human in humans where human.Age > 25 select human;
             foreach (Human h in result)
             {
-                Console.WriteLine("Name: {0} \nJob:{1}\nAge:{2}",h.Name,h.Description,h.Age);
-
+                Console.WriteLine("Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age);
             }
-            var result2 = humans.Where(human => human.Age > 25);
+            Console.WriteLine("---------------------------------------------------\n");
+            var result2 = humans.Where(human => human.Age > 25).OrderBy(human => human.Name.Length);
             foreach (Human h in result2)
             {
-                Console.WriteLine("Name: {0} \nJob:{1}\nAge:{2}", h.Name, h.Description, h.Age);
-
+                Console.WriteLine("Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age);
             }
+            Console.WriteLine("---------------------------------------------------\n");
+            TestLambda();
+            Console.WriteLine("---------------------------------------------------\n");
+            var result3 = from human in humans where human.Age > 25 orderby human.Age ascending select human;
+            foreach (Human h in result3)
+            {
+                Console.WriteLine("Name: {0} \nJob:{1} \nAge:{2}\n", h.Name, h.Description, h.Age);
+            }
+            Console.WriteLine("---------------------------------------------------\n");
             Console.ReadLine();
         }
+        delegate int del(int i);
+        static void TestLambda()
+        {
+            del myDelegate = (x) => x * x;
+            int sq = myDelegate(5); //sq = 25
+            Console.WriteLine(sq);
+        }
+    }
 
     }
     class Human
