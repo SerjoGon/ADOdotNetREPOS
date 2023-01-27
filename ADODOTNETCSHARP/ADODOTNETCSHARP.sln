@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Linq_start_toSQL", "Linq_st
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLStartLINK", "SQLStartLINK\SQLStartLINK.csproj", "{F1485437-0F2B-497C-9560-A427871EE909}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStart", "EntityStart\EntityStart.csproj", "{322DAEAC-FAF2-4A98-9799-D876A0475E17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{F1485437-0F2B-497C-9560-A427871EE909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1485437-0F2B-497C-9560-A427871EE909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1485437-0F2B-497C-9560-A427871EE909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{322DAEAC-FAF2-4A98-9799-D876A0475E17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{322DAEAC-FAF2-4A98-9799-D876A0475E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{322DAEAC-FAF2-4A98-9799-D876A0475E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{322DAEAC-FAF2-4A98-9799-D876A0475E17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
