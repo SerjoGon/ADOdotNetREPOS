@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="SQLClass.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>SQLClass.designer.cs</LastGenOutput>
