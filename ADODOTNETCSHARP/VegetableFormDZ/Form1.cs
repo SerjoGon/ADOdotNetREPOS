@@ -41,7 +41,7 @@ namespace VegetableFormDZ
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
             try
             {
-                adapterVegetable = new SqlDataAdapter("select * from Vegetable", connection.ConnectionString);
+                adapterVegetable = new SqlDataAdapter("select * from StockTable", connection.ConnectionString);
                 adapterVegetable.Fill(datasetveget);
                 datagridviev.DataSource = datasetveget.Tables[0];
                 statuslbl.Text = "Connection to DB success";
@@ -63,7 +63,7 @@ namespace VegetableFormDZ
                 asyncconnection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
                 asyncconnection.ConnectionString += ";Asynchronous Processing=true";
                 await asyncconnection.OpenAsync();
-                SqlCommand sqlcomm = new SqlCommand(/*"WAITFOR DELAY '00:00:05';*/"select * from Vegetable", asyncconnection);
+                SqlCommand sqlcomm = new SqlCommand(/*"WAITFOR DELAY '00:00:05';*/"select * from StockTable", asyncconnection);
                 reader = await sqlcomm.ExecuteReaderAsync();
                 if(reader != null)
                 {
