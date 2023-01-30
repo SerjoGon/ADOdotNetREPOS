@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityStart", "EntityStart\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VegetableFormDZ", "VegetableFormDZ\VegetableFormDZ.csproj", "{84E35033-75C3-470B-AE38-338F997881D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vegetableandfruitstock", "Vegetableandfruitstock\Vegetableandfruitstock.csproj", "{67FDE5F2-E7ED-4256-9A9B-5A6E32A64363}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{84E35033-75C3-470B-AE38-338F997881D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84E35033-75C3-470B-AE38-338F997881D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84E35033-75C3-470B-AE38-338F997881D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67FDE5F2-E7ED-4256-9A9B-5A6E32A64363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FDE5F2-E7ED-4256-9A9B-5A6E32A64363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FDE5F2-E7ED-4256-9A9B-5A6E32A64363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FDE5F2-E7ED-4256-9A9B-5A6E32A64363}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

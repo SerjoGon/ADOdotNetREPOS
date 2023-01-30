@@ -20,6 +20,7 @@ namespace VegetableFormDZ
         SqlCommandBuilder commandbuilder = new SqlCommandBuilder();
         SqlDataReader reader = null;
         DataSet datasetveget = new DataSet();
+        string connstr = null;
         public VegetableBaseDB()
         {
             InitializeComponent();
