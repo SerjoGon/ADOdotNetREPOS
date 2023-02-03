@@ -35,6 +35,10 @@
             this.statuslbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.striplbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.maxCaloriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minCaloriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.averageCaloriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.datagridviev)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -53,7 +57,8 @@
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectToBDToolStripMenuItem});
+            this.connectToBDToolStripMenuItem,
+            this.sortToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(800, 24);
@@ -63,7 +68,7 @@
             // connectToBDToolStripMenuItem
             // 
             this.connectToBDToolStripMenuItem.Name = "connectToBDToolStripMenuItem";
-            this.connectToBDToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.connectToBDToolStripMenuItem.Size = new System.Drawing.Size(96, 23);
             this.connectToBDToolStripMenuItem.Text = "Connect to BD";
             this.connectToBDToolStripMenuItem.Click += new System.EventHandler(this.connectToBDToolStripMenuItem_Click);
             // 
@@ -97,6 +102,37 @@
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 8;
             // 
+            // sortToolStripMenuItem
+            // 
+            this.sortToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maxCaloriesToolStripMenuItem,
+            this.minCaloriesToolStripMenuItem,
+            this.averageCaloriesToolStripMenuItem});
+            this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.sortToolStripMenuItem.Text = "Sort";
+            // 
+            // maxCaloriesToolStripMenuItem
+            // 
+            this.maxCaloriesToolStripMenuItem.Name = "maxCaloriesToolStripMenuItem";
+            this.maxCaloriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.maxCaloriesToolStripMenuItem.Text = "Max Calories";
+            this.maxCaloriesToolStripMenuItem.Click += new System.EventHandler(this.maxCaloriesToolStripMenuItem_Click);
+            // 
+            // minCaloriesToolStripMenuItem
+            // 
+            this.minCaloriesToolStripMenuItem.Name = "minCaloriesToolStripMenuItem";
+            this.minCaloriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.minCaloriesToolStripMenuItem.Text = "Min Calories";
+            this.minCaloriesToolStripMenuItem.Click += new System.EventHandler(this.minCaloriesToolStripMenuItem_Click);
+            // 
+            // averageCaloriesToolStripMenuItem
+            // 
+            this.averageCaloriesToolStripMenuItem.Name = "averageCaloriesToolStripMenuItem";
+            this.averageCaloriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.averageCaloriesToolStripMenuItem.Text = "Average Calories";
+            this.averageCaloriesToolStripMenuItem.Click += new System.EventHandler(this.averageCaloriesToolStripMenuItem_Click);
+            // 
             // VegetableBaseDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -107,6 +143,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "VegetableBaseDB";
             this.Text = "VegetableBase";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VegetableBaseDB_FormClosing);
             this.Load += new System.EventHandler(this.VegetableBaseDB_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagridviev)).EndInit();
             this.menuStrip.ResumeLayout(false);
@@ -128,6 +165,10 @@
         private System.Windows.Forms.ToolStripStatusLabel statuslbl;
         private System.Windows.Forms.ToolStripStatusLabel striplbl;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripMenuItem sortToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem maxCaloriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minCaloriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem averageCaloriesToolStripMenuItem;
     }
 }
 
