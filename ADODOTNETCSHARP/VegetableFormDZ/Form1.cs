@@ -106,8 +106,7 @@ namespace VegetableFormDZ
                 adapterVegetable.Update(datasetveget);
             }*/
         }
-
-        private void maxCaloriesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Sort(string request)
         {
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
             try
@@ -122,11 +121,22 @@ namespace VegetableFormDZ
                     adapterVegetable = null;
                     datasetveget = new DataSet();
                 }
-                adapterVegetable = new SqlDataAdapter("select MAX(Calories) from StockTable", connection.ConnectionString);
+                adapterVegetable = new SqlDataAdapter("select "+request+" (Calories) from StockTable", connection.ConnectionString);
                 adapterVegetable.Fill(datasetveget);
                 datagridviev.DataSource = datasetveget.Tables[0];
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                statuslbl.Text = ex.Message;
+            }
+        }
+        private void maxCaloriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Sort("MAX");
+            }
+            catch(Exception ex) 
             {
                 statuslbl.Text = ex.Message;
             }
@@ -134,22 +144,9 @@ namespace VegetableFormDZ
 
         private void minCaloriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
             try
             {
-                if (adapterVegetable == null)
-                {
-                    datagridviev.Rows.Clear();
-                    datagridviev.Columns.Clear();
-                }
-                else
-                {
-                    adapterVegetable = null;
-                    datasetveget = new DataSet();
-                }
-                adapterVegetable = new SqlDataAdapter("select MIN(Calories) from StockTable", connection.ConnectionString);
-                adapterVegetable.Fill(datasetveget);
-                datagridviev.DataSource = datasetveget.Tables[0];
+                Sort("MIN");
             }
             catch (Exception ex)
             {
@@ -159,22 +156,9 @@ namespace VegetableFormDZ
 
         private void averageCaloriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
             try
             {
-                if (adapterVegetable == null)
-                {
-                    datagridviev.Rows.Clear();
-                    datagridviev.Columns.Clear();
-                }
-                else
-                {
-                    adapterVegetable = null;
-                    datasetveget = new DataSet();
-                }
-                adapterVegetable = new SqlDataAdapter("select AVG(Calories) from StockTable", connection.ConnectionString);
-                adapterVegetable.Fill(datasetveget);
-                datagridviev.DataSource = datasetveget.Tables[0];
+                Sort("AVG");
             }
             catch (Exception ex)
             {

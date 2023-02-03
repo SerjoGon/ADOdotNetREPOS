@@ -15,7 +15,6 @@ namespace AdoDZ2
         {
             SqlConnection connection= new SqlConnection();
             connection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
-
             try
             {
             DataSet setCounter= new DataSet();
