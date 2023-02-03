@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vegetableandfruitstock", "V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoDZ2", "AdoDZ2\AdoDZ2.csproj", "{8AE3EAE2-E61F-4193-8858-A4CCCFD20626}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFWtwo", "EntityFWtwo\EntityFWtwo.csproj", "{3044C4E3-C7C1-46BF-8037-01E784BB1366}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{8AE3EAE2-E61F-4193-8858-A4CCCFD20626}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE3EAE2-E61F-4193-8858-A4CCCFD20626}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AE3EAE2-E61F-4193-8858-A4CCCFD20626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3044C4E3-C7C1-46BF-8037-01E784BB1366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3044C4E3-C7C1-46BF-8037-01E784BB1366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3044C4E3-C7C1-46BF-8037-01E784BB1366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3044C4E3-C7C1-46BF-8037-01E784BB1366}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
