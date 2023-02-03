@@ -49,11 +49,11 @@ namespace EntityFWtwo
                 {
                     Counter counter = new Counter(56,"ChiperChips","200",DateTime.Now);
                     storageEntities.Counter.Add(counter);
-                   // storageEntities.Counter.Remove(counter);
+                    storageEntities.Counter.Remove(counter);
                     storageEntities.SaveChanges();
                     tran.Commit();
                 }
-                catch (Exception ex) { Console.WriteLine(ex); }
+                catch (Exception ex) { tran.Rollback(); }
             }
         }
     }
