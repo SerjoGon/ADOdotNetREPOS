@@ -12,6 +12,7 @@ namespace EntityFWtwo
         static void Main(string[] args)
         {
             AddCounter(new Counter(55, "Pork", "140kg", DateTime.Now));
+            MyTransaction();
             GetAllCounters();
             Console.ReadLine();
         }
@@ -36,6 +37,23 @@ namespace EntityFWtwo
                 {
                     Console.WriteLine(item);
                 }
+            }
+        }
+
+        static void MyTransaction()
+        {
+            using (StorageEntities storageEntities = new StorageEntities())
+            {
+                System.Data.Entity.DbContextTransaction tran = storageEntities.Database.BeginTransaction();
+                try 
+                {
+                    Counter counter = new Counter(56,"ChiperChips","200",DateTime.Now);
+                    storageEntities.Counter.Add(counter);
+                   // storageEntities.Counter.Remove(counter);
+                    storageEntities.SaveChanges();
+                    tran.Commit();
+                }
+                catch (Exception ex) { Console.WriteLine(ex); }
             }
         }
     }
