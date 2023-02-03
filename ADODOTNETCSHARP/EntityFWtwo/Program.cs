@@ -11,7 +11,7 @@ namespace EntityFWtwo
     {
         static void Main(string[] args)
         {
-            //AddCounter(new Counter(50,"NewCounter","1000",DateTime.Now));
+            AddCounter(new Counter(55, "Pork", "140kg", DateTime.Now));
             GetAllCounters();
             Console.ReadLine();
         }
@@ -19,13 +19,17 @@ namespace EntityFWtwo
         {
             using (StorageEntities storageEntities = new StorageEntities())
             {
-                storageEntities.Counter.Add(item);
-                storageEntities.SaveChanges();
+                Counter exist = storageEntities.Counter.Where((x) => x.Id == item.Id).FirstOrDefault();
+                if (exist == null)
+                {
+                    storageEntities.Counter.Add(item);
+                    storageEntities.SaveChanges();
+                }
             }
         }
         static void GetAllCounters()
         {
-            using(StorageEntities storageEntities = new StorageEntities())
+            using (StorageEntities storageEntities = new StorageEntities())
             {
                 List<Counter> counters = storageEntities.Counter.ToList();
                 foreach (Counter item in counters)
