@@ -12,7 +12,7 @@ namespace BookShopwithSQLDB
 {
     public partial class Addbooks : Form
     {
-        public Addbooks()
+        public Addbooks(int index)
         {
             InitializeComponent();
         }

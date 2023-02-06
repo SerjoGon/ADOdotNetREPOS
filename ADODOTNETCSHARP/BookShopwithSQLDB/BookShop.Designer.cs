@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,19 +42,16 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.pageBook = new System.Windows.Forms.TabPage();
             this.dgv1 = new System.Windows.Forms.DataGridView();
-            this.pageStatistics = new System.Windows.Forms.TabPage();
-            this.dgv2 = new System.Windows.Forms.DataGridView();
+            this.bookShopDBNEWDataSet = new BookShopwithSQLDB.BookShopDBNEWDataSet();
+            this.bookTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bookTableTableAdapter = new BookShopwithSQLDB.BookShopDBNEWDataSetTableAdapters.BookTableTableAdapter();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabControl.SuspendLayout();
-            this.pageBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
-            this.pageStatistics.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookShopDBNEWDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -66,7 +64,7 @@
             this.filtersToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1184, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(945, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -138,9 +136,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ts_status});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 739);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 595);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1184, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(945, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -152,87 +150,57 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tabControl);
+            this.panel1.Controls.Add(this.dgv1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1184, 715);
+            this.panel1.Size = new System.Drawing.Size(945, 571);
             this.panel1.TabIndex = 6;
-            // 
-            // tabControl
-            // 
-            this.tabControl.Controls.Add(this.pageBook);
-            this.tabControl.Controls.Add(this.pageStatistics);
-            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1184, 715);
-            this.tabControl.TabIndex = 0;
-            // 
-            // pageBook
-            // 
-            this.pageBook.Controls.Add(this.dgv1);
-            this.pageBook.Location = new System.Drawing.Point(4, 22);
-            this.pageBook.Name = "pageBook";
-            this.pageBook.Padding = new System.Windows.Forms.Padding(3);
-            this.pageBook.Size = new System.Drawing.Size(1176, 689);
-            this.pageBook.TabIndex = 0;
-            this.pageBook.Text = "Books";
-            this.pageBook.UseVisualStyleBackColor = true;
             // 
             // dgv1
             // 
+            this.dgv1.AllowUserToDeleteRows = false;
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv1.Location = new System.Drawing.Point(3, 3);
+            this.dgv1.Location = new System.Drawing.Point(0, 0);
             this.dgv1.Name = "dgv1";
-            this.dgv1.Size = new System.Drawing.Size(1170, 683);
+            this.dgv1.Size = new System.Drawing.Size(945, 571);
             this.dgv1.TabIndex = 0;
             // 
-            // pageStatistics
+            // bookShopDBNEWDataSet
             // 
-            this.pageStatistics.Controls.Add(this.dgv2);
-            this.pageStatistics.Location = new System.Drawing.Point(4, 22);
-            this.pageStatistics.Name = "pageStatistics";
-            this.pageStatistics.Padding = new System.Windows.Forms.Padding(3);
-            this.pageStatistics.Size = new System.Drawing.Size(1176, 689);
-            this.pageStatistics.TabIndex = 1;
-            this.pageStatistics.Text = "Статистика";
-            this.pageStatistics.UseVisualStyleBackColor = true;
+            this.bookShopDBNEWDataSet.DataSetName = "BookShopDBNEWDataSet";
+            this.bookShopDBNEWDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dgv2
+            // bookTableBindingSource
             // 
-            this.dgv2.AllowUserToAddRows = false;
-            this.dgv2.AllowUserToDeleteRows = false;
-            this.dgv2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv2.Location = new System.Drawing.Point(3, 3);
-            this.dgv2.Name = "dgv2";
-            this.dgv2.ReadOnly = true;
-            this.dgv2.Size = new System.Drawing.Size(1170, 680);
-            this.dgv2.TabIndex = 1;
+            this.bookTableBindingSource.DataMember = "BookTable";
+            this.bookTableBindingSource.DataSource = this.bookShopDBNEWDataSet;
+            // 
+            // bookTableTableAdapter
+            // 
+            this.bookTableTableAdapter.ClearBeforeFill = true;
             // 
             // BookShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.ClientSize = new System.Drawing.Size(945, 617);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "BookShop";
             this.Text = "BookShopTable";
+            this.Load += new System.EventHandler(this.BookShop_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.tabControl.ResumeLayout(false);
-            this.pageBook.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
-            this.pageStatistics.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookShopDBNEWDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,11 +212,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel ts_status;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage pageBook;
-        private System.Windows.Forms.DataGridView dgv1;
-        private System.Windows.Forms.TabPage pageStatistics;
-        private System.Windows.Forms.DataGridView dgv2;
         private System.Windows.Forms.ToolStripMenuItem addBookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editBookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteBookToolStripMenuItem;
@@ -257,6 +220,10 @@
         private System.Windows.Forms.ToolStripMenuItem topWeekToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem topMonthsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem topOnYearToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dgv1;
+        private BookShopDBNEWDataSet bookShopDBNEWDataSet;
+        private System.Windows.Forms.BindingSource bookTableBindingSource;
+        private BookShopDBNEWDataSetTableAdapters.BookTableTableAdapter bookTableTableAdapter;
     }
 }
 

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,11 +16,12 @@ namespace BookShopwithSQLDB
 
     public partial class BookShop : Form
     {
-        SqlDataAdapter adapterBooks = null;
+        /*SqlDataAdapter adapterBooks = null;
         SqlDataAdapter adapterStatistics = null;
         SqlConnection conn = new SqlConnection();
         SqlCommandBuilder cmdbld = new SqlCommandBuilder();
         SqlCommandBuilder cmdbld2 = new SqlCommandBuilder();
+        */
         SqlDataReader reader = null;
         DataSet dataSetBooks = new DataSet();
         DataSet dataSetStatistics = new DataSet();
@@ -27,7 +29,16 @@ namespace BookShopwithSQLDB
         {
             InitializeComponent();
         }
+        private void LoadDataIntoDataGridView()
+        {
+            List<BookTable> books = new List<BookTable>();
 
+            using (BookShopDBNEWEntities db = new BookShopDBNEWEntities())
+            {
+                books = db.BookTable.ToList();
+            }
+            dgv1.DataSource = books;
+        }
         private void topMonthsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -37,93 +48,61 @@ namespace BookShopwithSQLDB
         {
             try
             {
-                if (tabControl.SelectedTab == pageBook)
+                int index = dgv1.Rows.Count - 1;
+                Addbooks ab = new Addbooks(index);
+                using (BookShopDBNEWEntities db = new BookShopDBNEWEntities())
                 {
-                    int lastid = 1;
-                    if (dataSetBooks.Tables[0].Rows.Count > 0)
-                    {
-                        lastid = (int)dataSetBooks.Tables[0].Rows[dataSetBooks.Tables[0].Rows.Count - 1][0] + 1;
-                    }
-                    Addbooks addbook = new Addbooks(lastid);
-                    if (addbook.ShowDialog() == DialogResult.OK)
-                    {
-                        dataSetBooks.Tables[0].Rows.Add(
-                            Int32.Parse(addbook.tb_bookID.Text),
-                            addbook.tb_bookname.Text,
-                            addbook.tb_authorname.Text,
-                            addbook.tb_genre.Text,
-                            addbook.tb_publisher.Text,
-                            addbook.tb_datepublish.Text,
-                            Int32.Parse(addbook.tb_price.Text)
-                            );
-                    }
-                    addbook.Dispose();
+                    BookTable book = new BookTable(
+                        Int32.Parse( ab.tb_bookID.Text),
+                        ab.tb_bookname.Text,
+                        ab.tb_authorname.Text,
+                        ab.tb_genre.Text,
+                        ab.tb_publisher.Text,
+                        DateTime.Parse(ab.tb_datepublish.Text),
+                        decimal.Parse(ab.tb_price.Text),false,false
+                        );
+                    db.BookTable.Add(book);
+                    db.SaveChanges();
                 }
-                else if (tabControl.SelectedTab == pageStatistics)
-                {
-                    
-                }
+                MessageBox.Show("Book added to the Bookstore.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDataIntoDataGridView();
             }
-            catch (Exception ex)
-            {
-                ts_status.Text = ex.Message;
-            }
+            catch(Exception ex) { ts_status.Text = ex.ToString(); }
         }
 
         private void editBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab == pageBook && dgv1.SelectedRows.Count > 0)
-            {
-                DataRow editRow = dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index];
-                Editbook ec = Editbook((int)editRow[0], (string)editRow[1]);
-                if (ec.ShowDialog() == DialogResult.OK)
-                {
-                    dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index].SetField(0, Int32.Parse(ec.tb_bookID.Text));
-                    dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index].SetField(1, ec.tb_editbookname.Text);
-                    dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index].SetField(2, ec.tb_edit_authorname.Text);
-                    dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index].SetField(3, ec.tb_edit_genre.Text);
-                    dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index].SetField(4, ec.tb_edit_publisher.Text);
-                    dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index].SetField(5, ec.tb_edit_datepublish.Text);
-                    dataSetBooks.Tables[0].Rows[dgv1.SelectedRows[0].Index].SetField(6, Int32.Parse(ec.tb_edit_price.Text));
-                }
-            }
+            
         }
 
         private void deleteBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            int index = dgv1.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+            int bookId = Convert.ToInt32(dgv1.Rows[index].Cells["Id"].Value);
+            using (BookShopDBNEWEntities db = new BookShopDBNEWEntities())
+            {
+                BookTable book = db.BookTable.Find(bookId);
+                db.BookTable.Remove(book);
+                db.SaveChanges();
+            }
+            MessageBox.Show("Book remove from the store.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LoadDataIntoDataGridView();
         }
 
         private void connectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (adapterBooks == null)
+            using (BookShopDBNEWEntities bookDBEntities = new BookShopDBNEWEntities())
             {
-                dgv1.Rows.Clear();
-                dgv1.Columns.Clear();
-                dgv2.Rows.Clear();
-                dgv2.Columns.Clear();
-            }
-            else
-            {
-                adapterBooks = null; adapterStatistics = null;
-                dataSetBooks = new DataSet(); dataSetStatistics = new DataSet();
-            }
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["BookShop"].ConnectionString;
-            try
-            {
-                adapterBooks = new SqlDataAdapter("select * from Books", conn.ConnectionString);
-                adapterBooks.Fill(dataSetBooks);
-                dgv1.DataSource = dataSetBooks.Tables[0];
-                adapterStatistics = new SqlDataAdapter("select * from StatisticsBook", conn.ConnectionString);
-                adapterStatistics.Fill(dataSetStatistics);
-                dgv2.DataSource = dataSetStatistics.Tables[0];
-                ts_status.Text = "Connection to BD success";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            
+                List<BookTable> books = bookDBEntities.BookTable.ToList();
+                dgv1.DataSource = books;
+            } 
+        }
+
+        private void BookShop_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'bookShopDBNEWDataSet.BookTable' table. You can move, or remove it, as needed.
+            this.bookTableTableAdapter.Fill(this.bookShopDBNEWDataSet.BookTable);
+
         }
     }
 }
