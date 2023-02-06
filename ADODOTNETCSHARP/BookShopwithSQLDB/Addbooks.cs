@@ -16,5 +16,15 @@ namespace BookShopwithSQLDB
         {
             InitializeComponent();
         }
+
+        private void btn_add_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

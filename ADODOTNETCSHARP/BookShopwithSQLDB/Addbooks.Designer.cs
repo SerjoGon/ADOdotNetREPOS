@@ -157,6 +157,7 @@
             this.btn_add.TabIndex = 12;
             this.btn_add.Text = "ADD";
             this.btn_add.UseVisualStyleBackColor = true;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_cancel
             // 
@@ -167,6 +168,7 @@
             this.btn_cancel.TabIndex = 13;
             this.btn_cancel.Text = "CANCEL";
             this.btn_cancel.UseVisualStyleBackColor = true;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // tb_bookID
             // 
