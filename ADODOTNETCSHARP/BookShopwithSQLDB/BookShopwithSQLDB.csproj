@@ -46,16 +46,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Addbooks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Addbooks.Designer.cs">
+      <DependentUpon>Addbooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookShop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookShop.Designer.cs">
+      <DependentUpon>BookShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editbook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editbook.Designer.cs">
+      <DependentUpon>Editbook.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Addbooks.resx">
+      <DependentUpon>Addbooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookShop.resx">
+      <DependentUpon>BookShop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editbook.resx">
+      <DependentUpon>Editbook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

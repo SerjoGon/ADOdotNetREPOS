@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BookShopwithSQLDB
 {
-    public partial class Form1 : Form
+    public partial class Editbook : Form
     {
-        public Form1()
+        public Editbook()
         {
             InitializeComponent();
         }
