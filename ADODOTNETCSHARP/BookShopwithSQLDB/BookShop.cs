@@ -46,11 +46,11 @@ namespace BookShopwithSQLDB
 
         private void addBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
+                Addbooks ab = new Addbooks();
             try
             {
                 int index = dgv1.Rows.Count - 1;
-                Addbooks ab = new Addbooks(index);
-                using (BookShopDBNEWEntities db = new BookShopDBNEWEntities())
+                /*using (BookShopDBNEWEntities db = new BookShopDBNEWEntities())
                 {
                     BookTable book = new BookTable(
                         Int32.Parse( ab.tb_bookID.Text),
@@ -63,7 +63,7 @@ namespace BookShopwithSQLDB
                         );
                     db.BookTable.Add(book);
                     db.SaveChanges();
-                }
+                }*/
                 MessageBox.Show("Book added to the Bookstore.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadDataIntoDataGridView();
             }
@@ -103,6 +103,11 @@ namespace BookShopwithSQLDB
             // TODO: This line of code loads data into the 'bookShopDBNEWDataSet.BookTable' table. You can move, or remove it, as needed.
             this.bookTableTableAdapter.Fill(this.bookShopDBNEWDataSet.BookTable);
 
+        }
+
+        private void addrowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dgv1.Rows.Add();
         }
     }
 }

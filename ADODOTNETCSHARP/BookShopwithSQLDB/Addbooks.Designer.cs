@@ -210,6 +210,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Addbooks";
             this.Text = "Addbooks";
+            this.Load += new System.EventHandler(this.Addbooks_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
