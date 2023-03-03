@@ -12,7 +12,7 @@ namespace BookShopwithSQLDB
 {
     public partial class Addbooks : Form
     {
-        public Addbooks(int index)
+        public Addbooks()
         {
             InitializeComponent();
         }
@@ -23,6 +23,11 @@ namespace BookShopwithSQLDB
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Addbooks_Load(object sender, EventArgs e)
         {
 
         }

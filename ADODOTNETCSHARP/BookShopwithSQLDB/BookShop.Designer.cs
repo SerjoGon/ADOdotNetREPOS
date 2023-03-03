@@ -46,6 +46,7 @@
             this.bookShopDBNEWDataSet = new BookShopwithSQLDB.BookShopDBNEWDataSet();
             this.bookTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bookTableTableAdapter = new BookShopwithSQLDB.BookShopDBNEWDataSetTableAdapters.BookTableTableAdapter();
+            this.addrowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -61,7 +62,8 @@
             this.addBookToolStripMenuItem,
             this.editBookToolStripMenuItem,
             this.deleteBookToolStripMenuItem,
-            this.filtersToolStripMenuItem});
+            this.filtersToolStripMenuItem,
+            this.addrowToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(945, 24);
@@ -181,6 +183,13 @@
             // 
             this.bookTableTableAdapter.ClearBeforeFill = true;
             // 
+            // addrowToolStripMenuItem
+            // 
+            this.addrowToolStripMenuItem.Name = "addrowToolStripMenuItem";
+            this.addrowToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.addrowToolStripMenuItem.Text = "addrow";
+            this.addrowToolStripMenuItem.Click += new System.EventHandler(this.addrowToolStripMenuItem_Click);
+            // 
             // BookShop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +233,7 @@
         private BookShopDBNEWDataSet bookShopDBNEWDataSet;
         private System.Windows.Forms.BindingSource bookTableBindingSource;
         private BookShopDBNEWDataSetTableAdapters.BookTableTableAdapter bookTableTableAdapter;
+        private System.Windows.Forms.ToolStripMenuItem addrowToolStripMenuItem;
     }
 }
 
