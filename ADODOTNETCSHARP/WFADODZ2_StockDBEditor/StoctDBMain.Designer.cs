@@ -31,27 +31,36 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ts_status = new System.Windows.Forms.ToolStripStatusLabel();
             this.statuslbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tab_Control = new System.Windows.Forms.TabControl();
             this.tabProviders = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvProviders = new System.Windows.Forms.DataGridView();
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
+            this.tabShow = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.connectToDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Showmenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.mINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mAXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aVGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dgvShow = new System.Windows.Forms.DataGridView();
             this.statusStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tab_Control.SuspendLayout();
             this.tabProviders.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProviders)).BeginInit();
             this.tabProduct.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
+            this.tabShow.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvShow)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -76,15 +85,16 @@
             this.statuslbl.Size = new System.Drawing.Size(28, 17);
             this.statuslbl.Text = "Info";
             // 
-            // tabControl1
+            // tab_Control
             // 
-            this.tabControl1.Controls.Add(this.tabProviders);
-            this.tabControl1.Controls.Add(this.tabProduct);
-            this.tabControl1.Location = new System.Drawing.Point(0, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 398);
-            this.tabControl1.TabIndex = 6;
+            this.tab_Control.Controls.Add(this.tabProviders);
+            this.tab_Control.Controls.Add(this.tabProduct);
+            this.tab_Control.Controls.Add(this.tabShow);
+            this.tab_Control.Location = new System.Drawing.Point(0, 27);
+            this.tab_Control.Name = "tab_Control";
+            this.tab_Control.SelectedIndex = 0;
+            this.tab_Control.Size = new System.Drawing.Size(800, 398);
+            this.tab_Control.TabIndex = 6;
             // 
             // tabProviders
             // 
@@ -148,13 +158,26 @@
             this.dgvProduct.Size = new System.Drawing.Size(786, 366);
             this.dgvProduct.TabIndex = 1;
             // 
+            // tabShow
+            // 
+            this.tabShow.Controls.Add(this.dgvShow);
+            this.tabShow.Location = new System.Drawing.Point(4, 22);
+            this.tabShow.Name = "tabShow";
+            this.tabShow.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShow.Size = new System.Drawing.Size(792, 372);
+            this.tabShow.TabIndex = 2;
+            this.tabShow.Text = "Show";
+            this.tabShow.UseVisualStyleBackColor = true;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToDBToolStripMenuItem,
             this.AddToolStripMenuItem,
             this.EditToolStripMenuItem,
-            this.DeleteToolStripMenuItem});
+            this.DeleteToolStripMenuItem,
+            this.SaveToolStripMenuItem,
+            this.Showmenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -189,12 +212,59 @@
             this.DeleteToolStripMenuItem.Text = "Удалить строку";
             this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
+            // SaveToolStripMenuItem
+            // 
+            this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
+            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.SaveToolStripMenuItem.Text = "Сохранить";
+            this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
+            // 
+            // Showmenu
+            // 
+            this.Showmenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mINToolStripMenuItem,
+            this.mAXToolStripMenuItem,
+            this.aVGToolStripMenuItem});
+            this.Showmenu.Name = "Showmenu";
+            this.Showmenu.Size = new System.Drawing.Size(69, 20);
+            this.Showmenu.Text = "Показать";
+            // 
+            // mINToolStripMenuItem
+            // 
+            this.mINToolStripMenuItem.Name = "mINToolStripMenuItem";
+            this.mINToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.mINToolStripMenuItem.Text = "Мин кол-во товара";
+            this.mINToolStripMenuItem.Click += new System.EventHandler(this.mINToolStripMenuItem_Click);
+            // 
+            // mAXToolStripMenuItem
+            // 
+            this.mAXToolStripMenuItem.Name = "mAXToolStripMenuItem";
+            this.mAXToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.mAXToolStripMenuItem.Text = "Макс кол-во товара";
+            this.mAXToolStripMenuItem.Click += new System.EventHandler(this.mAXToolStripMenuItem_Click);
+            // 
+            // aVGToolStripMenuItem
+            // 
+            this.aVGToolStripMenuItem.Name = "aVGToolStripMenuItem";
+            this.aVGToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.aVGToolStripMenuItem.Text = "Средняя по кол-во товара";
+            this.aVGToolStripMenuItem.Click += new System.EventHandler(this.aVGToolStripMenuItem_Click);
+            // 
+            // dgvShow
+            // 
+            this.dgvShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvShow.Location = new System.Drawing.Point(3, 3);
+            this.dgvShow.Name = "dgvShow";
+            this.dgvShow.Size = new System.Drawing.Size(786, 366);
+            this.dgvShow.TabIndex = 0;
+            // 
             // Stock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tab_Control);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -203,15 +273,17 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Stock_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tab_Control.ResumeLayout(false);
             this.tabProviders.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProviders)).EndInit();
             this.tabProduct.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
+            this.tabShow.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvShow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -221,7 +293,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel ts_status;
         private System.Windows.Forms.ToolStripStatusLabel statuslbl;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tab_Control;
         private System.Windows.Forms.TabPage tabProviders;
         private System.Windows.Forms.TabPage tabProduct;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -233,6 +305,13 @@
         private System.Windows.Forms.ToolStripMenuItem AddToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EditToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabShow;
+        private System.Windows.Forms.ToolStripMenuItem Showmenu;
+        private System.Windows.Forms.ToolStripMenuItem mINToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mAXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aVGToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dgvShow;
     }
 }
 

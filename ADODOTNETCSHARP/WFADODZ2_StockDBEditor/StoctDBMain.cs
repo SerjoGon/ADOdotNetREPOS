@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,16 +15,17 @@ namespace WFADODZ2_StockDBEditor
 {
     public partial class Stock : Form
     {
+        SqlDataAdapter adapter = null;
+        DataSet dataset = new DataSet();
+        SqlConnection conn = new SqlConnection();
+
         SqlDataAdapter adapterProviders = null;
         SqlDataAdapter adapterProduct = null;
         SqlConnection connectProviders = new SqlConnection();
-        SqlConnection connectProduct = new SqlConnection();
         SqlCommandBuilder cmdbuilderProviders = new SqlCommandBuilder();
         SqlCommandBuilder cmdbuilderProduct = new SqlCommandBuilder();
-        SqlDataReader readerStock = null;
         DataSet datasetProviders = new DataSet();
         DataSet datasetProduct = new DataSet();
-        SqlCommand sqlcommStock = null;
         public Stock()
         {
             InitializeComponent();
@@ -70,7 +72,7 @@ namespace WFADODZ2_StockDBEditor
         {
             try
             {
-                if (tabControl1.SelectedTab == tabProviders)
+                if (tab_Control.SelectedTab == tabProviders)
                 {
                     int lastid = 1;
                     if (datasetProviders.Tables[0].Rows.Count > 0)
@@ -89,7 +91,7 @@ namespace WFADODZ2_StockDBEditor
                     }
                     ap.Dispose();
                 }
-                else if (tabControl1.SelectedTab == tabProduct)
+                else if (tab_Control.SelectedTab == tabProduct)
                 {
                     int lastid = 1;
                     if (datasetProduct.Tables[0].Rows.Count > 0)
@@ -115,7 +117,7 @@ namespace WFADODZ2_StockDBEditor
         {
             try
             {
-                if (tabControl1.SelectedTab == tabProviders && dgvProviders.SelectedRows.Count > 0)
+                if (tab_Control.SelectedTab == tabProviders && dgvProviders.SelectedRows.Count > 0)
                 {
                     DataRow editRow = datasetProviders.Tables[0].Rows[dgvProviders.SelectedRows[0].Index];
                     EditProviders editprov = new EditProviders(
@@ -128,7 +130,7 @@ namespace WFADODZ2_StockDBEditor
                         datasetProviders.Tables[0].Rows[dgvProviders.SelectedRows[0].Index].SetField(3, DateTime.Parse(editprov.tb_dateincoming.Text));
                     }
                 }
-                else if (tabControl1.SelectedTab == tabProduct && dgvProduct.SelectedRows.Count > 0)
+                else if (tab_Control.SelectedTab == tabProduct && dgvProduct.SelectedRows.Count > 0)
                 {
                     DataRow editRow = datasetProduct.Tables[0].Rows[dgvProduct.SelectedRows[0].Index];
                     EditProduct editprod = new EditProduct(
@@ -147,6 +149,35 @@ namespace WFADODZ2_StockDBEditor
         }
         private void Stock_FormClosing(object sender, FormClosingEventArgs e)
         {
+            SaveFunc();
+        }
+
+        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tab_Control.SelectedTab == tabProviders)
+                {
+                    if (dgvProviders.SelectedRows.Count > 0 && dgvProviders.SelectedRows[0].Cells[0].Value != null)
+                    {
+                        datasetProviders.Tables[0].Rows.RemoveAt(dgvProviders.SelectedRows[0].Index);
+                    }
+                }
+                else if (tab_Control.SelectedTab == tabProduct)
+                    if (dgvProduct.SelectedRows.Count > 0 && dgvProduct.SelectedRows[0].Cells[0].Value != null)
+                    {
+                        datasetProduct.Tables[0].Rows.RemoveAt(dgvProduct.SelectedRows[0].Index);
+                    }
+            }
+            catch (Exception ex) { statuslbl.Text = ex.Message; }
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFunc();
+        }
+        private void SaveFunc()
+        {
             DialogResult dialres = MessageBox.Show("Save to DB?", "Update Database", MessageBoxButtons.OKCancel);
             if (dialres == DialogResult.OK && adapterProviders != null && adapterProduct != null)
             {
@@ -161,28 +192,59 @@ namespace WFADODZ2_StockDBEditor
                 adapterProduct.InsertCommand = cmdbuilderProduct.GetInsertCommand();
                 adapterProduct.UpdateCommand = cmdbuilderProduct.GetUpdateCommand();
                 adapterProduct.Update(datasetProduct);
-
             }
         }
 
-        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mINToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ComandQuery("SELECT Id,ProviderName,Count,DateIncome FROM Providers WHERE Count = (SELECT MIN(Count) FROM Providers);");
+        }
+
+        private void mAXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //string Query = "SELECT MAX(Count) FROM Providers";
+            string Query = "SELECT Id,ProviderName,Count,DateIncome FROM Providers WHERE Count = (SELECT MAX(Count) FROM Providers);";
+            ComandQuery(Query);
+        }
+        void ComandQuery(string Query)
+        { 
+            if (adapter == null)
+            {
+                dgvShow.Rows.Clear();
+                dgvShow.Columns.Clear();
+            }
+            else
+            {
+                adapter = null;
+                dataset = new DataSet();
+            }
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings["StockDB"].ConnectionString;
             try
             {
-                if(tabControl1.SelectedTab == tabProviders)
+                using (conn = new SqlConnection(conn.ConnectionString))
                 {
-                    if(dgvProviders.SelectedRows.Count > 0 && dgvProviders.SelectedRows[0].Cells[0].Value != null)
-                    {
-                        datasetProviders.Tables[0].Rows.RemoveAt(dgvProviders.SelectedRows[0].Index);
-                    }
+                    conn.Open();
+                    adapter = new SqlDataAdapter(Query, conn.ConnectionString);
+                    adapter.Fill(dataset);
+                    dgvShow.DataSource = dataset.Tables[0];
+                    conn.Close();
                 }
-                else if(tabControl1.SelectedTab == tabProduct)
-                    if(dgvProduct.SelectedRows.Count > 0 && dgvProduct.SelectedRows[0].Cells[0].Value != null)
-                    {
-                        datasetProduct.Tables[0].Rows.RemoveAt(dgvProduct.SelectedRows[0].Index);
-                    }
+                statuslbl.Text = "Connection to DB success";
             }
-            catch(Exception ex){ statuslbl.Text = ex.Message; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                statuslbl.Text = "All data read success";
+            }
+
+        }
+
+        private void aVGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComandQuery("SELECT Id,ProviderName,Count,DateIncome FROM Providers WHERE Count = (SELECT MIN(Count) FROM Providers);");
         }
     }
 }
