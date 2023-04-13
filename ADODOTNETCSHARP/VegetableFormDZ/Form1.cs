@@ -9,161 +9,81 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Data.Common;
+using System.Data.Odbc;
 
 namespace VegetableFormDZ
 {
     public partial class VegetableBaseDB : Form
     {
-        SqlDataAdapter adapterVegetable = null;
-        SqlConnection connection = new SqlConnection();
-        SqlConnection asyncconnection = new SqlConnection();
-        SqlCommandBuilder commandbuilder = new SqlCommandBuilder();
-        SqlDataReader reader = null;
-        DataSet datasetveget = new DataSet();
-        SqlCommand sqlcomm = null;
-        //string connstr = null;
+        DbConnection conn = null;
+        DbProviderFactory factory = null;
+        DbDataAdapter dbDataAdapter = null;
+        string providerName = "";
         public VegetableBaseDB()
         {
             InitializeComponent();
-
+            btn_Execute_Request.Enabled = false;
         }
 
-        private void connectToBDToolStripMenuItem_Click(object sender, EventArgs e)
+        
+        private void Connection()
         {
-            if (adapterVegetable == null)
+            conn.ConnectionString = textBox1.Text;
+            dbDataAdapter = factory.CreateDataAdapter();
+            dbDataAdapter.SelectCommand = conn.CreateCommand();
+            dbDataAdapter.SelectCommand.CommandText = textBox2.Text.ToString();
+            DataTable dt = new DataTable();
+            dbDataAdapter.Fill(dt);
+            datagridviev.DataSource = null;
+            datagridviev.DataSource = dt;
+        }
+
+        private void btn_GetAllProviders_Click(object sender, EventArgs e)
+        {
+            DataTable dt = DbProviderFactories.GetFactoryClasses();
+            datagridviev.DataSource = dt;
+            comboBox_AllProviders.Items.Clear();
+            foreach(DataRow dataRow in dt.Rows)
             {
-                datagridviev.Rows.Clear();
-                datagridviev.Columns.Clear();
-            }
-            else
-            {
-                adapterVegetable = null;
-                datasetveget = new DataSet();
-            }
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
-            try
-            {
-                adapterVegetable = new SqlDataAdapter("select * from StockTable", connection.ConnectionString);
-                adapterVegetable.Fill(datasetveget);
-                datagridviev.DataSource = datasetveget.Tables[0];
-                statuslbl.Text = "Connection to DB success";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                statuslbl.Text = "All data read success";
+                comboBox_AllProviders.Items.Add(dataRow["InvariantName"]);
             }
         }
 
-        private async void VegetableBaseDB_Load(object sender, EventArgs e)
+        private void comboBox_AllProviders_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* try
+            factory = DbProviderFactories.GetFactory(comboBox_AllProviders.SelectedItem.ToString());
+            conn = factory.CreateConnection();
+            providerName = GetConnectionStringByProvider(comboBox_AllProviders.SelectedItem.ToString());
+            textBox1.Text = providerName;
+        }
+        static string GetConnectionStringByProvider(string providerName)
+        {
+            string provider = null;
+            ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
+            if (settings != null) 
             {
-                asyncconnection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
-                asyncconnection.ConnectionString += ";Asynchronous Processing=true";
-                await asyncconnection.OpenAsync();
-                sqlcomm = new SqlCommand("select * from StockTable", asyncconnection);
-                reader = await sqlcomm.ExecuteReaderAsync();
-                if (reader != null)
+                foreach(ConnectionStringSettings constr  in settings) 
                 {
-                    int line = 0;
-                    do
+                    if (constr.ProviderName == providerName) 
                     {
-                        while (await reader.ReadAsync())
-                        {
-                            if (line == 0)
-                            {
-                                for (int i = 0; i < reader.FieldCount; i++)
-                                {
-                                    datagridviev.Columns.Add(reader.GetName(i).ToString(), reader.GetName(i).ToString());
-                                }
-                            }
-                            line++;
-                            datagridviev.Rows.Add(reader[0].ToString(), reader[1].ToString());
-                        }
+                        provider = constr.ConnectionString;
+                        break;
                     }
-                    while (await reader.NextResultAsync());
                 }
             }
-            catch (Exception ex)
-            { statuslbl.Text = ex.Message; }
-            finally { asyncconnection.Close(); }*/
-
+            return provider;
         }
 
-        private void VegetableBaseDB_FormClosing(object sender, FormClosingEventArgs e)
+        private void btn_Execute_Request_Click(object sender, EventArgs e)
         {
-            /*DialogResult dr = MessageBox.Show("Сохранить данные работы в БД?", "Обновление БД", MessageBoxButtons.OKCancel);
-            if (dr == DialogResult.OK && adapterVegetable != null)
-            {
-                commandbuilder = new SqlCommandBuilder(adapterVegetable);
-                adapterVegetable.DeleteCommand = commandbuilder.GetDeleteCommand();
-                adapterVegetable.InsertCommand = commandbuilder.GetInsertCommand();
-                adapterVegetable.UpdateCommand = commandbuilder.GetUpdateCommand();
-                adapterVegetable.Update(datasetveget);
-            }*/
-        }
-        private void Sort(string request)
-        {
-            connection.ConnectionString = ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString;
-            try
-            {
-                if (adapterVegetable == null)
-                {
-                    datagridviev.Rows.Clear();
-                    datagridviev.Columns.Clear();
-                }
-                else
-                {
-                    adapterVegetable = null;
-                    datasetveget = new DataSet();
-                }
-                adapterVegetable = new SqlDataAdapter("select "+request+" (Calories) from StockTable", connection.ConnectionString);
-                adapterVegetable.Fill(datasetveget);
-                datagridviev.DataSource = datasetveget.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                statuslbl.Text = ex.Message;
-            }
-        }
-        private void maxCaloriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Sort("MAX");
-            }
-            catch(Exception ex) 
-            {
-                statuslbl.Text = ex.Message;
-            }
+            Connection();
         }
 
-        private void minCaloriesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                Sort("MIN");
-            }
-            catch (Exception ex)
-            {
-                statuslbl.Text = ex.Message;
-            }
-        }
-
-        private void averageCaloriesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Sort("AVG");
-            }
-            catch (Exception ex)
-            {
-                statuslbl.Text = ex.Message;
-            }
+            if (textBox2.Text.Length > 10) btn_Execute_Request.Enabled = true;
+            else btn_Execute_Request.Enabled = false;
         }
     }
 }
